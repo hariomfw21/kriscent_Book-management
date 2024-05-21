@@ -9,7 +9,6 @@ require('dotenv').config();
 
 const app = express();
 
-
 app.use(express.json());
 
 // Routes
@@ -19,9 +18,10 @@ const { morganMiddleware } = require('./middlewares/loggingMiddleware.js');
 
 app.use(morganMiddleware);
 
-// app.use("/", (req, res) => {
-//     res.json({ message: "success", data: "Hello KRISENT" })
-// })
+// Root route
+app.get('/', (req, res) => {
+    res.json({ message: "success", data: "Hello World" });
+});
 
 const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { customCssUrl: CSS_URL }));
